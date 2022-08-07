@@ -26,5 +26,7 @@ const playGameRound = (playerSelection, computerSelection) => {
     }
 };
 
+playGameRoundD();
+
 
 
