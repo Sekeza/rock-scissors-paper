@@ -56,7 +56,8 @@ const game = () => {
     return userScore > cpuScore ? "Player one wins" : userScore === cpuScore ? "It's a deuce-Draw" : "Computer wins";
 }
 
-game();
+let finalOutcome = game();
+console.log(finalOutcome); 
 
 
 
