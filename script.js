@@ -1,3 +1,8 @@
+const playerDisplay = document.querySelector("#player-display");
+const computerDisplay = document.querySelector("#computer-display");
+const winnerDisplay = document.querySelector("#winning-display");
+const playerChoiceBtn = document.querySelectorAll("button");
+
 const choiceArray = ["Rock", "Scissors", "Paper"];
 
 
@@ -27,7 +32,7 @@ const playGameRound = (playerSelection, computerSelection) => {
         return "It's a draw!"
     }
     else {
-        return "Dont get there!"
+        return "Hope it won't get here!"
     }
 };
 
