@@ -1,72 +1,92 @@
 const playerDisplay = document.querySelector("#player-display");
 const computerDisplay = document.querySelector("#computer-display");
-const winnerDisplay = document.querySelector("#winning-display");
+const resultDisplay = document.querySelector("#result-display");
 const playerChoiceBtns = document.querySelectorAll("button");
+
+let playerSelection;
+let computerSelection;
+let finalResult;
 
 const choiceArray = ["Rock", "Scissors", "Paper"];
 
 playerChoiceBtns.forEach(playerChoiceBtn => {
-    playerChoiceBtn.addEventListener("click", playGameRound);
-})
+    playerChoiceBtn.addEventListener("click", (e) => {
+        playerSelection =e.target.id;
+        playerDisplay.textContent = playerSelection.toLowerCase();
+
+        computerSelection = getComputerChoice();
+        playGameRound(playerSelection, computerSelection);
+
+        console.log("person: " + playerSelection); 
+        console.log( "computer: " + computerSelection);
+        
+    });
+});
 
 
 const getComputerChoice = () => {
   const randomNumber = Math.floor(Math.random() * choiceArray.length);
-  const cpuChoice = choiceArray[randomNumber];
+  console.log( "randomNumber: " + randomNumber);
+  const cpuChoice = choiceArray[randomNumber].toLowerCase();
+  console.log( "cpuChoice: " + cpuChoice);
+  computerDisplay.textContent = cpuChoice.toLowerCase();
   return cpuChoice;
 };
 
-let computerSelection;
-let userInput;
+
 
 const playGameRound = (playerSelection, computerSelection) => {
-    let userPick = playerSelection;
-    let cpuPick = computerSelection;
 
-    console.log("person: " + userPick); 
-    console.log( "computer: " + cpuPick);
-
-    if((userPick + cpuPick) === "rockscissors" || (userPick + cpuPick) === "paperrock" || (userPick + cpuPick) === "scissorspaper" ) {
-        return "You win!"
+    if((playerSelection + computerSelection) === "rockscissors" || (playerSelection + computerSelection) === "paperrock" || (playerSelection + computerSelection) === "scissorspaper" ) {
+        finalResult = "You win!"
     }
-    else if((userPick + cpuPick) === "scissorsrock" || (userPick + cpuPick) === "rockpaper" || (userPick + cpuPick) === "paperscissors" ) {
-        return "You lost!"
+    else if((playerSelection + computerSelection) === "scissorsrock" || (playerSelection + computerSelection) === "rockpaper" || (playerSelection + computerSelection) === "paperscissors" ) {
+        finalResult = "You lost!"
     }
-    else if((userPick + cpuPick) === "rockrock" || (userPick + cpuPick) === "scissorsscissors" || (userPick + cpuPick) === "paperpaper" ) {
-        return "It's a draw!"
+    else if((playerSelection + computerSelection) === "rockrock" || (playerSelection + computerSelection) === "scissorsscissors" || (playerSelection + computerSelection) === "paperpaper" ) {
+        finalResult = "It's a draw!"
     }
     else {
-        return "Hope it won't get here!"
+        finalResult = "Hope it won't get here!"
     }
+    resultDisplay.textContent = finalResult;
 };
 
 
-const game = () => {
-    let userScore = 0; 
-    let cpuScore = 0;
-    for(let i = 0; i < 5; i++) {
-        userInput = prompt("Enter either 'Rock', 'Paper', 'Scissors' to play: ").toLowerCase();
-        computerSelection = getComputerChoice().toLowerCase();
-        
-        console.log("userInput: " + userInput);
-        console.log("computerSelection: " + computerSelection);
+// playerChoiceBtns.forEach(playerChoiceBtn => {
+//     playerChoiceBtn.addEventListener("click", game);
+// });
 
-        let result = playGameRound(userInput, computerSelection);
-        if(result === "You win!") {
-             userScore++;
-        }
-        if(result === "You lost!") {
-             cpuScore++;  
-        }
-        console.log("userScore: " + userScore);
-        console.log("cpuScore: " + cpuScore);
-        console.log(result);        
-    }
-    return userScore > cpuScore ? "Player one wins" : userScore === cpuScore ? "It's a deuce-Draw" : "Computer wins";
-}
 
-let finalOutcome = game();
-console.log(finalOutcome); 
+// const game = (e) => {
+//     let userScore = 0; 
+//     let cpuScore = 0;
+//     for(let i = 0; i < 5; i++) {
+//         playerPick = e.target.id;
+//         playerDisplay.textContent = playerPick.toLowerCase();
+
+//         cpuPick = getComputerChoice();
+//         playGameRound(playerPick, cpuPick);
+
+//         console.log("person: " + playerPick); 
+//         console.log( "computer: " + cpuPick);
+
+//         let result = playGameRound(playerPick, cpuPick);
+//         if(result === "You win!") {
+//              userScore++;
+//         }
+//         if(result === "You lost!") {
+//              cpuScore++;  
+//         }
+//         console.log("userScore: " + userScore);
+//         console.log("cpuScore: " + cpuScore);
+//         console.log(result);        
+//     }
+//     return userScore > cpuScore ? "Player one wins" : userScore === cpuScore ? "It's a deuce-Draw" : "Computer wins";
+// }
+
+// let finalOutcome = game();
+// console.log(finalOutcome); 
 
 
 
