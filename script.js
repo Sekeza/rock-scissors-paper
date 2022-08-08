@@ -1,9 +1,13 @@
 const playerDisplay = document.querySelector("#player-display");
 const computerDisplay = document.querySelector("#computer-display");
 const winnerDisplay = document.querySelector("#winning-display");
-const playerChoiceBtn = document.querySelectorAll("button");
+const playerChoiceBtns = document.querySelectorAll("button");
 
 const choiceArray = ["Rock", "Scissors", "Paper"];
+
+playerChoiceBtns.forEach(playerChoiceBtn => {
+    playerChoiceBtn.addEventListener("click", playGameRound);
+})
 
 
 const getComputerChoice = () => {
